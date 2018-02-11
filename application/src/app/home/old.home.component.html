@@ -1,0 +1,86 @@
+<!--
+      USAGE:
+            This html is an older version of the template view for home.component.
+            It was used to demonstrate some of the functionality in Angular as a
+            teaching tool. It is now removed from the application so there is no
+            access from home.component to this template.
+            To reuse this template for whatever reason, uncomment the properties in
+            home.component.ts and replace the content of the current template
+            home.component.html with the content in this file.
+            Some of the features in this file also require data transmission from and
+            to the other Angular components. To use those feature, uncomment the
+            corresponding properties in app.component.ts, and modify its template
+            accordingly.
+
+ -->
+
+
+<p>
+  {{homeTitle}}
+</p>
+
+<ng-content><!-- ng-content is used to refer any ordinary html contents
+                  placed within this selector's directive ('app-home'
+                  in this case). Normally, any html contents that are
+                  placed within an angular directive is going to be
+                  replaced by the template of the corresponding selector.
+                  For example, when <app-home>something</app-home> is
+                  loaded, the plain text 'something' will be replaced
+                  by app-home's template. By placing the directive
+                  'ng-content' INSIDE the app-home's template, the plain
+                  text 'something' will be retained at the location
+                  where 'ng-content' tags are placed. In this example
+                  html contents will be retained at THIS location right
+                  after the <p> tags. --></ng-content>
+
+<!-- Property Binding: One-way binding INTO the view -->
+<input [value]=myString />
+<input [required]=myBool />
+
+<!-- quotes don't matter -->
+<input [value]= "myString" />
+<input [required]= "myBool" />
+<input value= "{{myString}}" />
+<input required= "{{myBool}}" />
+
+
+<!-- Event Binding: One way binding From the view To the control
+ i.e. '<name_of_component>.component.ts' -->
+<button (click)="alertMe('McDonald sucks')" >Click Me</button>
+<button (click)="alertMeAgain()" >Click Me As Well</button>
+<button (click)="lastAlert()" >Click Me One More Time</button>
+
+<br/>
+
+<!-- Two-way data binding via builtin directive 'ngModel'.
+      'ngModel' holds a reference to a property in the
+      Component class and link it up to the view, hence
+      the data of that property can be updated bidirectional.
+      If the value of the property is updated in the view,
+      the model 'ngModel' will reflect the changes to the
+      Component. Once the Component updates its property, the
+      changes will be reflect back to the view. -->
+<label>
+  name:
+  <input [(ngModel)]="ninja.name" />
+</label>
+<label>
+  belt:
+  <input [(ngModel)]="ninja.belt" />
+</label>
+<p>{{ninja.name}}</p>
+<p>{{ninja.name}}</p>
+<p>{{ninja.belt}}</p>
+
+<br/>
+<!-- received data from another component -->
+<!--
+<p>{{receivedNinja.name}}</p>
+<p>{{receivedNinja.belt}}</p>
+-->
+
+<br/>
+<!-- Emitting 'click' event here, which will lately turn into a custom event.
+      '$event' is a builtin construct that wraps all the information about
+      the event in an Object. -->
+<button (click)="fireYellEvent($event)">Hit Me To Yell</button>
